@@ -1,0 +1,82 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static int N;
+	
+	public static int nowX = 1;
+	public static int nowY = 1;
+	
+	public static int[][] map;
+	
+	// 좌 우 상 하
+	public static int[] dx = {0, 0, -1, 1};
+	public static int[] dy = {-1, 1, 0, 0};
+	
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        N = Integer.parseInt(br.readLine());
+        map = new int[N+1][N+1];
+        
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        
+        while(st.hasMoreTokens()) {
+        	String input = st.nextToken();
+        	
+        	travel(input, nowX, nowY);
+        }
+        
+        System.out.println(nowX + " " + nowY);
+    }
+    
+    public static void travel(String input, int startX, int startY) {
+    	int startx = startX;
+    	int starty = startY;
+    	
+    	if(input.equals("L")) {
+    		int nextX = startx + dx[0];
+    		int nextY = starty + dy[0];
+    		
+    		if(nextX<1 || nextY<1 || nextX>N || nextY>N)
+    			return;
+    		else {
+    			nowX = nextX;
+    			nowY = nextY;
+    		}
+    	}
+    	else if(input.equals("R")) {
+    		int nextX = startX + dx[1];
+    		int nextY = startY + dy[1];
+    		
+    		if(nextX<1 || nextY<1 || nextX>N || nextY>N)
+    			return;
+    		else {
+    			nowX = nextX;
+    			nowY = nextY;
+    		}
+    	}
+    	else if(input.equals("U")) {
+    		int nextX = startX + dx[2];
+    		int nextY = startY + dy[2];
+    		
+    		if(nextX<1 || nextY<1 || nextX>N || nextY>N)
+    			return;
+    		else {
+    			nowX = nextX;
+    			nowY = nextY;
+    		}
+    	}
+    	else if(input.equals("D")) {
+    		int nextX = startX + dx[3];
+    		int nextY = startY + dy[3];
+    		
+    		if(nextX<1 || nextY<1 || nextX>N || nextY>N)
+    			return;
+    		else {
+    			nowX = nextX;
+    			nowY = nextY;
+    		}
+    	}
+    }
+}
