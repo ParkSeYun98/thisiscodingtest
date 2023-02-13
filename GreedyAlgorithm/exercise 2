@@ -23,7 +23,7 @@ public class Main {
 		int second = arr[arr.length-2];
 		int sum = 0;
 		
-		sum += first*(M - M%K);
+		sum += first*(M - (M%K));
 		sum += second*(M % K);
 		
 		System.out.println(sum);
