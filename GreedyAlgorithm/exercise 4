@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        
+        int cnt = 0;
+        
+        while(true) {
+        	if(N == 1)
+        		break;
+        	
+        	if(N%K == 0) {
+        		N /= K;
+        		cnt++;
+        	}
+        	else {
+        		N -= 1;
+        		cnt++;
+        	}        	
+        }
+        
+        System.out.println(cnt);
+    }
+}
