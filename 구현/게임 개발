@@ -1,0 +1,94 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static int N;
+	public static int M;
+	public static int count = 1;
+	
+	public static int[][] map;
+	
+	public static int[][] dx = {{0, 1, 0, -1}, {-1, 0, 1, 0}, {0, -1, 0, 1}, {1, 0, -1, 0}};
+	public static int[][] dy = {{-1, 0, 1, 0}, {0, -1, 0, 1}, {1, 0, -1, 0}, {0, 1, 0, -1}};
+	
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        
+        map = new int[N][M];
+        
+        st = new StringTokenizer(br.readLine(), " ");
+        
+        int startX = Integer.parseInt(st.nextToken());
+        int startY = Integer.parseInt(st.nextToken());
+        int seedirection = Integer.parseInt(st.nextToken());
+        
+        for(int i=0; i<N; i++) {
+        	st = new StringTokenizer(br.readLine(), " ");
+        	
+        	for(int j=0; j<M; j++) 
+        		map[i][j] = Integer.parseInt(st.nextToken());
+        }
+        
+        move(startX, startY, seedirection);
+        
+        System.out.println(count);
+    }
+    
+    public static void move(int x, int y, int seedirection) {
+    	int startX = x;
+    	int startY = y;
+    	
+    	while(true) {
+    		int flag = 0;
+    		
+    		for(int d=0; d<4; d++) {
+        		int nextX = startX + dx[seedirection][d];
+        		int nextY = startY + dy[seedirection][d];
+        		
+        		if(!outofmapCheck(nextX, nextY)) {
+        			flag++;
+        			continue;
+        		}
+        		
+        		if(!zeroCheck(nextX, nextY)) {
+        			flag++;
+        			continue;
+        		}
+        		
+        		count++;
+        		
+        		map[startX][startY] = 1;
+        		
+        		startX = nextX;
+        		startY = nextY;
+        		
+        		break;
+        	}
+    		
+    		if(flag == 4)
+    			break;
+    	}
+    	
+    }
+    
+    public static boolean outofmapCheck(int x, int y) {
+    	if(x<0 || y<0 || x>=N || y>=M)
+    		return false;
+    	return true;
+    }
+    
+    public static boolean zeroCheck(int x, int y) {
+    	if(map[x][y] == 0)
+    		return true;
+    	return false;
+    }
+}
