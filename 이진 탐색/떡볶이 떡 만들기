@@ -1,0 +1,58 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class adsflasjdl {	
+	public static int N;
+	public static int M;
+	
+	public static int[] riceCake;
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		
+		riceCake = new int[N];
+		
+		st = new StringTokenizer(br.readLine(), " ");
+		for(int i=0; i<N; i++) 
+			riceCake[i] = Integer.parseInt(st.nextToken());
+		
+		System.out.println(check());
+	}
+	
+	public static int check() {
+		int max = -1;
+		int min = 0;
+		
+		for(int i=0; i<riceCake.length; i++) 
+			max = Math.max(max, riceCake[i]);
+		
+		int start = min;
+		int end = max;
+		int mid = -1;
+		
+		while(start <= end) {
+			mid = (start + end) / 2;
+			int sum = 0;
+			
+			for(int i=0; i<riceCake.length; i++) {
+				if(riceCake[i] > mid)
+					sum += riceCake[i] - mid;
+			}
+			
+			if(sum == M)
+				return mid;
+			else if(sum < M)
+				end = mid - 1;
+			else
+				start = mid + 1;
+		}
+		
+		return mid;
+	}
+}
