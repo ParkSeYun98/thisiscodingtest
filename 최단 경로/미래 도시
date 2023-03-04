@@ -31,7 +31,7 @@ public class Main {
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
             
-            // 왔다갔다 가능하다 했음
+            // 왔다갔다 가능
             map[start][end] = 1;
             map[end][start] = 1;
         }
